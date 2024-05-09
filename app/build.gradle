@@ -39,8 +39,6 @@ android {
         versionName '1.7.2'
         resValue 'string', 'app_version', versionName + ' (' + versionCode + ')'
         buildConfigField 'String', 'FILE_PROVIDIER_AUTHORITY', 'APPLICATION_ID + ".file_provider"'
-        resValue 'string', 'app_provider_authority', applicationId + '.app_provider'
-        resValue 'string', 'file_provider_authority', applicationId + '.file_provider'
         externalNativeBuild {
             cmake {
                 arguments '-DANDROID_STL=none'
@@ -85,8 +83,12 @@ android {
 //#endif
         }
         debug {
-            applicationIdSuffix ".debug"
+            applicationIdSuffix '.debug'
         }
+    }
+    applicationVariants.all { variant ->
+        variant.resValue 'string', 'app_provider_authority', applicationId + '.app_provider'
+        variant.resValue 'string', 'file_provider_authority', applicationId + '.file_provider'
     }
     packagingOptions {
         jniLibs {
