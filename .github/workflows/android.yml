@@ -17,6 +17,10 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
+    - name: Remove non-free components
+      run: |
+        rm -r app/src/main/java/me/zhanghai/android/files/nonfree
+        find -type f -exec sed -i '/\/\/#ifdef NONFREE/,/\/\/#endif/d' {} +
     - name: Build with Gradle
       run: ./gradlew assembleDebug lintVitalRelease
     - name: Upload artifact
