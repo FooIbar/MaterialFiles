@@ -84,6 +84,9 @@ android {
             }
 //#endif
         }
+        debug {
+            applicationIdSuffix ".debug"
+        }
     }
     packagingOptions {
         jniLibs {
